@@ -1,24 +1,21 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Assets/walk_anim_back_two.png" type="Texture" id=1]
+[ext_resource path="res://Assets/starter_player_anim_walk_front_2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://Assets/walk_anim_front_one.png" type="Texture" id=3]
-[ext_resource path="res://Assets/walk_anim_front_two.png" type="Texture" id=4]
-[ext_resource path="res://Assets/walk_anim_back_one.png" type="Texture" id=5]
-[ext_resource path="res://Assets/walk_anim_side_one.png" type="Texture" id=6]
-[ext_resource path="res://Assets/walk_anim_side_two.png" type="Texture" id=7]
-[ext_resource path="res://Assets/front.png" type="Texture" id=8]
-[ext_resource path="res://Assets/idle_anim_front_one.png" type="Texture" id=9]
-[ext_resource path="res://Assets/idle_anim_front_two.png" type="Texture" id=10]
-[ext_resource path="res://Assets/idle_anim_front_three.png" type="Texture" id=11]
+[ext_resource path="res://Assets/starter_player_anim_walk_front_1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/starter_player_anim_walk_back_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/starter_player_anim_walk_1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/starter_player_anim_walk_back_2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/starter_player_anim_walk_2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/starter_player_anim_one.png" type="Texture" id=9]
+[ext_resource path="res://Assets/starter_player_tiles.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18.9885, 19.571 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
-length = 1.2
-loop = true
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
 tracks/0/interp = 1
@@ -26,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
-"transitions": PoolRealArray( 1, 2.14355, 1, 2.2974 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 2.37841, 3.03144 ),
 "update": 1,
-"values": [ ExtResource( 8 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ) ]
+"values": [ ExtResource( 12 ), ExtResource( 9 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -43,9 +40,9 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"transitions": PoolRealArray( 3.73213, 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ), ExtResource( 1 ) ]
+"values": [ ExtResource( 5 ), ExtResource( 7 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -60,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 4 ) ]
+"values": [ ExtResource( 4 ), ExtResource( 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -73,21 +70,20 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 5.27803 ),
+"transitions": PoolRealArray( 2.07053, 4.43828 ),
 "update": 1,
-"values": [ ExtResource( 6 ), ExtResource( 7 ) ]
+"values": [ ExtResource( 6 ), ExtResource( 8 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Body" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
-region_enabled = true
 region_rect = Rect2( 10.9912, 8.49315, 18.127, 19.4797 )
 __meta__ = {
-"_editor_description_": ""
+"_editor_description_": "	
+				"
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -98,3 +94,7 @@ anims/Idle = SubResource( 2 )
 anims/walking_back = SubResource( 3 )
 anims/walking_front = SubResource( 4 )
 anims/walking_side = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )

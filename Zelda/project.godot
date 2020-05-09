@@ -19,6 +19,10 @@ config/name="Zelda"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
 [input]
 
 move_up={

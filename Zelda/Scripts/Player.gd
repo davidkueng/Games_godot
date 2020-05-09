@@ -1,18 +1,21 @@
 extends KinematicBody2D
 
-var move_speed = 1.5
-onready var anim_player = $AnimationPlayer
+var tilemap
+var anim_player
+var move_speed = 2.5
 
-var back_sprite = preload("res://Assets/back.png")
-var front_sprite = preload("res://Assets/front.png")
-var side_sprite = preload("res://Assets/side_left_dir.png")
+func _ready():
+	anim_player = $AnimationPlayer
+	tilemap = Globals.current_scene.get_node("TileMap")
+	Globals.set("player", self)
+	print(tilemap)
 
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 		
 func _physics_process(delta):
-	var move_vec = Vector2()
+	var move_vec = Vector2()	
 	
 	if Input.is_action_pressed("move_down"):
 		move_vec += Vector2.DOWN
@@ -28,10 +31,26 @@ func _physics_process(delta):
 		move_vec += Vector2.LEFT
 		$Body.set_flip_h(false)
 		anim_player.play("walking_side")
-	elif move_vec == Vector2.ZERO:
+	if move_vec == Vector2.ZERO:
 		anim_player.play("Idle")
 	move_vec = move_vec.normalized()
-	move_and_collide(move_vec * move_speed)
+	var coll = move_and_collide(move_vec * move_speed)
+	
+	if coll:
+		if tilemap == null:
+			tilemap = $"/root/Main/Starting_World/TileMap"
+		
+		var cell = tilemap.world_to_map(coll.position - coll.normal)
+		var tile_id = tilemap.get_cellv(cell)
+		
+		
+		if tile_id == 4:
+			Globals.goto_scene("res://Scenes/Levels/Shop.tscn")
+#			tilemap = Globals.current_scene.get_node("TileMap")
+			print(tilemap)
+		if tile_id == 7:
+			Globals.goto_scene("res://Scenes/Levels/Starting_World.tscn") 
+
 	
 	
 	
