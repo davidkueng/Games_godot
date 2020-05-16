@@ -10,8 +10,9 @@
 [ext_resource path="res://Assets/starter_player_anim_one.png" type="Texture" id=9]
 [ext_resource path="res://Assets/starter_player_tiles.png" type="Texture" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18.9885, 19.571 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.99872
+height = 13.1901
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -80,6 +81,7 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 12 )
 region_rect = Rect2( 10.9912, 8.49315, 18.127, 19.4797 )
 __meta__ = {
 "_editor_description_": "	
@@ -87,6 +89,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
