@@ -158,7 +158,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
-1/name = "items.png 1"
+1/name = "wand"
 1/texture = ExtResource( 3 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -174,7 +174,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
-2/name = "items.png 2"
+2/name = "bow"
 2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -190,7 +190,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
-3/name = "items.png 3"
+3/name = "staff"
 3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
@@ -206,7 +206,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
-4/name = "items.png 4"
+4/name = "axe"
 4/texture = ExtResource( 3 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
@@ -222,7 +222,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
-5/name = "shop_owner.png 5"
+5/name = "shop_owner"
 5/texture = ExtResource( 4 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
@@ -252,10 +252,9 @@ tile_data = PoolIntArray( 196610, 6, 0, 196611, 6, 0, 196612, 6, 0, 196613, 6, 0
 
 [node name="Objects_TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 12 )
-cell_size = Vector2( 16, 16 )
-centered_textures = true
+cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 1048606, 4, 0, 1048608, 3, 0, 1048610, 2, 0, 1048612, 1, 0, 1179674, 5, 0, 1179681, 0, 0 )
+tile_data = PoolIntArray( 524301, 4, 0, 524302, 3, 0, 524303, 2, 0, 524304, 1, 0, 589835, 5, 0, 589837, 0, 0 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 264.777, 182.643 )
