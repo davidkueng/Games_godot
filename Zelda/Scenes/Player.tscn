@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/starter_player_anim_walk_front_2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/starter_player_anim_get_wep.png" type="Texture" id=3]
 [ext_resource path="res://Assets/starter_player_anim_walk_front_1.png" type="Texture" id=4]
 [ext_resource path="res://Assets/starter_player_anim_walk_back_1.png" type="Texture" id=5]
 [ext_resource path="res://Assets/starter_player_anim_walk_1.png" type="Texture" id=6]
@@ -28,6 +29,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 2.37841, 3.03144 ),
 "update": 1,
 "values": [ ExtResource( 12 ), ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "get_wep"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 3 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -94,6 +111,7 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
+anims/get_wep = SubResource( 6 )
 anims/walking_back = SubResource( 3 )
 anims/walking_front = SubResource( 4 )
 anims/walking_side = SubResource( 5 )

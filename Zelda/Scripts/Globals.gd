@@ -3,8 +3,9 @@ extends Node
 var player
 var current_scene = null
 var player_spawn_pos
+var player_weapon
 var root
-var shop_weapons = []
+
 #var move_speed = 2.5
 
 func _ready():
