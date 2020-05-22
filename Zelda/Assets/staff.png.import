@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bow.png-0f730b3bfbe1830445c98da84c6ee0a7.stex"
+path="res://.import/staff.png-38771b4dbe22d4fe4656579a1101f1ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bow.png"
-dest_files=[ "res://.import/bow.png-0f730b3bfbe1830445c98da84c6ee0a7.stex" ]
+source_file="res://Assets/staff.png"
+dest_files=[ "res://.import/staff.png-38771b4dbe22d4fe4656579a1101f1ca.stex" ]
 
 [params]
 

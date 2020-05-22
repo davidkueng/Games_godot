@@ -31,7 +31,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "get_wep"
 length = 2.0
 tracks/0/type = "value"
@@ -47,8 +47,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ), ExtResource( 3 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walking_back"
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -63,7 +62,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ), ExtResource( 7 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -78,7 +77,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 4 ), ExtResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -111,10 +110,10 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
-anims/get_wep = SubResource( 6 )
-anims/walking_back = SubResource( 3 )
-anims/walking_front = SubResource( 4 )
-anims/walking_side = SubResource( 5 )
+anims/get_wep = SubResource( 3 )
+anims/walking_back = SubResource( 4 )
+anims/walking_front = SubResource( 5 )
+anims/walking_side = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
