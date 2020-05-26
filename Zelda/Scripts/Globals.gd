@@ -3,7 +3,7 @@ extends Node
 var player
 var current_scene = null
 var player_spawn_pos
-var player_weapon
+var player_weapon = false
 var root
 
 #var move_speed = 2.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/starter_player_anim_walk_front_2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -9,7 +9,11 @@
 [ext_resource path="res://Assets/starter_player_anim_walk_back_2.png" type="Texture" id=7]
 [ext_resource path="res://Assets/starter_player_anim_walk_2.png" type="Texture" id=8]
 [ext_resource path="res://Assets/starter_player_anim_one.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Player_weapon_anim/bow_player_back_anim_1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Player_weapon_anim/bow_player_back_anim_2.png" type="Texture" id=11]
 [ext_resource path="res://Assets/starter_player_tiles.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Player_weapon_anim/axe_player_back_anim_2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Player_weapon_anim/axe_player_back_anim_1.png" type="Texture" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.99872
@@ -31,8 +35,39 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ), ExtResource( 9 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "axe_back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ), ExtResource( 13 ) ]
+}
+
 [sub_resource type="Animation" id=3]
-resource_name = "get_wep"
+resource_name = "bow_back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ), ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -47,7 +82,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ), ExtResource( 3 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -62,7 +97,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ), ExtResource( 7 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -77,7 +112,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 4 ), ExtResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -97,7 +132,7 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Body" type="Sprite" parent="."]
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 region_rect = Rect2( 10.9912, 8.49315, 18.127, 19.4797 )
 __meta__ = {
 "_editor_description_": "	
@@ -110,11 +145,17 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
-anims/get_wep = SubResource( 3 )
-anims/walking_back = SubResource( 4 )
-anims/walking_front = SubResource( 5 )
-anims/walking_side = SubResource( 6 )
+anims/axe_back = SubResource( 8 )
+anims/bow_back = SubResource( 3 )
+anims/get_wep = SubResource( 4 )
+anims/walking_back = SubResource( 5 )
+anims/walking_front = SubResource( 6 )
+anims/walking_side = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="Position2D" type="Position2D" parent="."]
+visible = false
+position = Vector2( -5.83478, 0.0595398 )

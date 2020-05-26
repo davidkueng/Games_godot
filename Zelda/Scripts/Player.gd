@@ -6,7 +6,7 @@ var weapons_tilemap
 var anim_player
 var move_speed = 2.5
 var player_spawn_pos
-var weapon = false
+var weapon_achieved = false
 
 func _ready():
 	anim_player = $AnimationPlayer
@@ -65,8 +65,8 @@ func player_collision():
 				clear_tile(coll, cell)
 				
 				weapons_tilemap.tile_set.clear()
-	
-				weapon = true
+				
+				weapon_achieved = true
 				
 				var weapon_sprite = load("res://Scenes/weapons/" + Globals.player_weapon + ".tscn").instance()
 				
@@ -102,7 +102,10 @@ func player_movement():
 		anim_player.play("walking_front")
 	if Input.is_action_pressed("move_up"):
 		move_vec += Vector2.UP
-		anim_player.play("walking_back")
+		if !Globals.player_weapon:
+			anim_player.play("walking_back")
+		else:
+			anim_player.play(Globals.player_weapon + "_back")
 	if Input.is_action_pressed("move_right"):
 		move_vec += Vector2.RIGHT
 		$Body.set_flip_h(true)
@@ -112,17 +115,33 @@ func player_movement():
 		$Body.set_flip_h(false)
 		anim_player.play("walking_side")
 	if move_vec == Vector2.ZERO:
-		if !weapon:
+		if !weapon_achieved:
 			anim_player.play("Idle")
 		else:
-#			"freeze" player movement
 			anim_player.play("get_wep")
 			yield(get_tree().create_timer(0.1), "timeout")
 			get_tree().paused = true
 			yield(get_tree().create_timer(2), "timeout")
 			get_tree().paused = false
-			weapon = false
-			
+			weapon_achieved = false
+	if Input.is_action_just_pressed("shoot"):
+		if Globals.player_weapon and move_vec != Vector2.ZERO:
+			var proj = load("res://Scenes/Projectile.tscn").instance()
+			add_child(proj)
+
+			if move_vec == Vector2.DOWN:
+				proj.rotation_degrees = -90
+				proj.velocity = Vector2.DOWN
+			elif move_vec == Vector2.UP:
+				proj.rotation_degrees = 90
+				proj.velocity = Vector2.UP
+			elif move_vec == Vector2.RIGHT:
+				proj.rotation_degrees = 180
+				proj.velocity = Vector2.RIGHT
+			elif move_vec == Vector2.LEFT:
+				proj.rotation_degrees = 0
+				proj.velocity = Vector2.LEFT
+
 	move_vec = move_vec.normalized()
 	
 	move_and_collide(move_vec * move_speed)
