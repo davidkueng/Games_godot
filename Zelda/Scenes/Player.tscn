@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ), ExtResource( 9 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "axe_back"
 length = 0.6
 tracks/0/type = "value"
@@ -51,8 +51,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 14 ), ExtResource( 13 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "bow_back"
+[sub_resource type="Animation" id=4]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -67,7 +66,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 10 ), ExtResource( 11 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -82,7 +81,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ), ExtResource( 3 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -97,7 +96,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ), ExtResource( 7 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -112,7 +111,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 4 ), ExtResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:texture")
@@ -132,7 +131,7 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Body" type="Sprite" parent="."]
-texture = ExtResource( 13 )
+texture = ExtResource( 12 )
 region_rect = Rect2( 10.9912, 8.49315, 18.127, 19.4797 )
 __meta__ = {
 "_editor_description_": "	
@@ -145,12 +144,12 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
-anims/axe_back = SubResource( 8 )
-anims/bow_back = SubResource( 3 )
-anims/get_wep = SubResource( 4 )
-anims/walking_back = SubResource( 5 )
-anims/walking_front = SubResource( 6 )
-anims/walking_side = SubResource( 7 )
+anims/axe_back = SubResource( 3 )
+anims/bow_back = SubResource( 4 )
+anims/get_wep = SubResource( 5 )
+anims/walking_back = SubResource( 6 )
+anims/walking_front = SubResource( 7 )
+anims/walking_side = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

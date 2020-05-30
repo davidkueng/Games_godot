@@ -1,40 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Levels/Starting_World.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Start_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Enemy_goober.tscn" type="PackedScene" id=4]
 
-[sub_resource type="Curve2D" id=1]
-_data = {
-"points": PoolVector2Array( 2.94837, -12.5834, -2.94837, 12.5834, -18.419, 3.77371, 26.1422, 54.6593, -26.1422, -54.6593, -205.494, -17.8537, -21.0317, 58.9849, 21.0317, -58.9849, -205.144, -158.394, -30.6631, -69.2089, 30.6631, 69.2089, -5.61121, -150.303, 26.1422, -35.7841, -26.1422, 35.7841, -18.3961, 3.06409 )
-}
-
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 300.397 )
-
-[node name="Starting_World" parent="." instance=ExtResource( 1 )]
-show_behind_parent = true
-
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2( 760.044, 500 )
-scale = Vector2( 2.61165, 1.30544 )
-curve = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( -18.419, 3.77371 )
-rotate = false
-
-[node name="Enemy_goober" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
-scale = Vector2( 0.3829, 0.766025 )
-[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy_goober/Area2D" to="Player" method="_goober_damage"]
-
-[editable path="Starting_World"]
-
-[editable path="Path2D/PathFollow2D/Enemy_goober"]
+[node name="start_screen" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0

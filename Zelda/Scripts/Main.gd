@@ -1,7 +1,8 @@
-extends Node2D
-
+extends Node
 
 func _ready():
-#	print_tree()
 	pass
-
+	
+func _process(delta):
+	pass
+#	Globals.goto_scene("res://Scenes/Levels/Starting_World.tscn")

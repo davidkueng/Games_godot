@@ -22,8 +22,7 @@ func _ready():
 #			objects_tilemap = $"/root/Main/Starting_World/Objects_TileMap"
 
 func _process(delta):
-	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+	pass
 
 #	move_speed = Globals.move_speed
 
@@ -63,17 +62,11 @@ func player_collision():
 			if weapons_tile_name:
 				Globals.player_weapon = weapons_tile_name
 				clear_tile(coll, cell)
-				
 				weapons_tilemap.tile_set.clear()
-				
 				weapon_achieved = true
-				
 				var weapon_sprite = load("res://Scenes/weapons/" + Globals.player_weapon + ".tscn").instance()
-				
 				weapon_sprite.position.y = self.position.y - 270
-				
 				add_child(weapon_sprite)
-				
 				yield(get_tree().create_timer(2), "timeout")
 				weapon_sprite.queue_free()
 				
@@ -90,10 +83,6 @@ func clear_tile(coll, tile_id):
 func player_spawn(path):
 	player_spawn_pos = load(path).instance().get_node("PlayerSpawn").position
 
-#func _goober_damage(body):
-#		if "Player" in body.name:
-#			print("take damage")
-			
 func player_movement():
 	var move_vec = Vector2()
 #
@@ -124,27 +113,37 @@ func player_movement():
 			yield(get_tree().create_timer(2), "timeout")
 			get_tree().paused = false
 			weapon_achieved = false
-	if Input.is_action_just_pressed("shoot"):
-		if Globals.player_weapon and move_vec != Vector2.ZERO:
-			var proj = load("res://Scenes/Projectile.tscn").instance()
-			add_child(proj)
-
-			if move_vec == Vector2.DOWN:
-				proj.rotation_degrees = -90
-				proj.velocity = Vector2.DOWN
-			elif move_vec == Vector2.UP:
-				proj.rotation_degrees = 90
-				proj.velocity = Vector2.UP
-			elif move_vec == Vector2.RIGHT:
-				proj.rotation_degrees = 180
-				proj.velocity = Vector2.RIGHT
-			elif move_vec == Vector2.LEFT:
-				proj.rotation_degrees = 0
-				proj.velocity = Vector2.LEFT
-
+	if Input.is_action_just_pressed("attack"):
+		weapon_attack(move_vec)
+#		
 	move_vec = move_vec.normalized()
 	
-	move_and_collide(move_vec * move_speed)
+	move_and_collide(move_vec * move_speed)	
+	
+func weapon_attack(move_vec):
+	if Globals.player_weapon and move_vec != Vector2.ZERO:
+		var proj = load("res://Scenes/Projectile.tscn").instance()
+		add_child(proj)
+		
+		if Globals.player_weapon == "axe":
+			var axe = preload("res://Assets/axe_small.png")
+			proj.get_node("projectile").set_texture(axe)
+			proj.speed = 0
+
+		if move_vec == Vector2.DOWN:
+			proj.rotation_degrees = -90
+			proj.velocity = Vector2.DOWN
+		elif move_vec == Vector2.UP:
+			proj.rotation_degrees = 90
+			proj.velocity = Vector2.UP
+		elif move_vec == Vector2.RIGHT:
+			proj.rotation_degrees = 180
+			proj.velocity = Vector2.RIGHT
+		elif move_vec == Vector2.LEFT:
+			proj.rotation_degrees = 0
+			proj.velocity = Vector2.LEFT
+		
+	
 	
 
 
