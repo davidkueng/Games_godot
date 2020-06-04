@@ -10,14 +10,10 @@ func _ready():
 	anim_player = $AnimationPlayer
 
 	level_tilemap = Globals.current_scene.get_node("Level_TileMap")
-#	objects_tilemap is currently empty in all scenes
-#	objects_tilemap = Globals.current_scene.get_node("Objects_TileMap")
 	weapons_tilemap = Globals.current_scene.get_node("Weapons_TileMap")
 
 	if level_tilemap == null:
 			level_tilemap = $"/root/Main/Starting_World/Level_TileMap"
-#	if objects_tilemap == null:
-#			objects_tilemap = $"/root/Main/Starting_World/Objects_TileMap"
 
 func _process(delta):
 	pass	
@@ -52,7 +48,6 @@ func player_movement():
 		anim_player.play("walking_side")
 	if move_vec == Vector2.ZERO:
 		anim_player.play("Idle")
-#	
 	if Input.is_action_just_pressed("attack"):
 		weapon_attack(move_vec)
 #		
@@ -92,7 +87,7 @@ func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		get_tree().paused = true
 		yield(get_tree().create_timer(2), "timeout")
 		get_tree().paused = false
-		
+
 		weapon_sprite.queue_free()
 	
 func get_tile_name(coll, tilemap):
@@ -106,27 +101,28 @@ func clear_tile(coll, tile_id):
 	return coll.collider.tile_set.remove_tile(tile_id)
 	
 func weapon_attack(move_vec):
-	if Globals.player_weapon and move_vec != Vector2.ZERO:
-		var proj = load("res://Scenes/Projectile.tscn").instance()
-		add_child(proj)
-		
+	if Globals.player_weapon:
+		var weap = load("res://Scenes/Weapon.tscn").instance()
+		add_child(weap)
+
 		if Globals.player_weapon == "axe":
 			var axe = preload("res://Assets/axe_small.png")
-			proj.get_node("projectile").set_texture(axe)
-			proj.speed = 0
+			weap.get_node("weapon").set_texture(axe)
+			weap.speed = 0
 
-		if move_vec == Vector2.DOWN:
-			proj.rotation_degrees = -90
-			proj.velocity = Vector2.DOWN
-		elif move_vec == Vector2.UP:
-			proj.rotation_degrees = 90
-			proj.velocity = Vector2.UP
-		elif move_vec == Vector2.RIGHT:
-			proj.rotation_degrees = 180
-			proj.velocity = Vector2.RIGHT
-		elif move_vec == Vector2.LEFT:
-			proj.rotation_degrees = 0
-			proj.velocity = Vector2.LEFT
+		if Globals.player_weapon == "bow": 
+			if move_vec == Vector2.DOWN or move_vec == Vector2.ZERO:
+				weap.rotation_degrees = -90
+				weap.velocity = Vector2.DOWN
+			elif move_vec == Vector2.UP:
+				weap.rotation_degrees = 90
+				weap.velocity = Vector2.UP
+			elif move_vec == Vector2.RIGHT:
+				weap.rotation_degrees = 180
+				weap.velocity = Vector2.RIGHT
+			elif move_vec == Vector2.LEFT:
+				weap.rotation_degrees = 0
+				weap.velocity = Vector2.LEFT
 		
 	
 	

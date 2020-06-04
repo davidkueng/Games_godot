@@ -30,6 +30,7 @@ radius = 9.39587
 height = 8.63467
 
 [node name="Enemy_goober" type="KinematicBody2D"]
+z_index = 1
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -42,6 +43,7 @@ shape = SubResource( 1 )
 anims/enemy_goober_walk = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 3 )
