@@ -123,6 +123,7 @@ func weapon_attack(move_vec):
 			elif move_vec == Vector2.LEFT:
 				weap.rotation_degrees = 0
 				weap.velocity = Vector2.LEFT
+
 		
 	
 	
