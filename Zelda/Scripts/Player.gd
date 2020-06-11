@@ -67,6 +67,8 @@ func player_collision():
 	
 			if level_tile_name == "shop_stairs_exit":
 				Globals.goto_scene("res://Scenes/Levels/Starting_World.tscn", "null")
+				print(Globals.enemy_dir)
+				print(Globals.enemy_pos)
 
 		if coll.collider.name == "Weapons_TileMap":
 			var weapons_tile_name = get_tile_name(coll, weapons_tilemap)[0]

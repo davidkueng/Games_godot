@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/enemy_goober_anim_walk_2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/enemy_goober_anim_walk_1.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Enemy_goober.gd" type="Script" id=3]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_front_2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_front_1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_back_2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_back_1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_side_1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/enemy_goober_anim_walk_side_2.png" type="Texture" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.70322
@@ -13,7 +19,7 @@ resource_name = "enemy_goober_walk"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Body:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +31,55 @@ tracks/0/keys = {
 "values": [ ExtResource( 2 ), ExtResource( 1 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="Animation" id=3]
+resource_name = "walk_down"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk_side"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk_up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 9.39587
 height = 8.63467
 
@@ -33,17 +87,20 @@ height = 8.63467
 z_index = 1
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enemy_goober_walk = SubResource( 2 )
+anims/walk_down = SubResource( 3 )
+anims/walk_side = SubResource( 4 )
+anims/walk_up = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 6 )

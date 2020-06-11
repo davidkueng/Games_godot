@@ -7,6 +7,7 @@ var player_weapon = false
 var root
 var prev_scene
 var enemy_pos = [0,1,2]
+var enemy_dir = [0,1,2]
 
 func _ready():
 	root = get_tree().get_root()
@@ -37,22 +38,25 @@ func _deferred_goto_scene(path, spawn):
 	for i in enemy_pos.size():
 		spawn_enemies(i)
 		i += 1
+#		print("enemy_spawned")
 	
 	if current_scene.name == "Starting_World":
 		print_stray_nodes()
-
+#
 func spawn_enemies(pos):
-#	enemies are stray nodes (hopefully bc they are not killed and freed yet)
-	var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
 	var rand = RandomNumberGenerator.new()
 	var screen_size = get_viewport().get_visible_rect().size
 
 	if current_scene.name == "Starting_World" and prev_scene == "start_screen":
+		var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
 		current_scene.add_child(enemy)
 
 		rand.randomize()
 		enemy.position.y = rand.randf_range(0, screen_size.y)
 		enemy.position.x = rand.randf_range(0, screen_size.x)
+		
+		var dir = [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]
+		enemy.move_vec = dir[rand.randi() % dir.size()]
 		
 		var distance_to_player = enemy.get_global_position().distance_to(player.get_global_position())
 
@@ -61,9 +65,17 @@ func spawn_enemies(pos):
 			enemy.position.x = rand.randf_range(0, screen_size.x)  
 		
 		enemy_pos.remove(pos)
+		enemy_dir.remove(pos)
 		enemy_pos.push_front(Vector2(enemy.position.x, enemy.position.y))
+		enemy_dir.push_front(enemy.move_vec)
 
 	elif current_scene.name == "Starting_World":
+		var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
 		current_scene.add_child(enemy)
 		enemy.position = enemy_pos[pos]
+		enemy.move_vec = enemy_dir[pos]
+#
+
+#		BUG: always instance 3 new enemies even if some were killed before changing scene
+
 #		
