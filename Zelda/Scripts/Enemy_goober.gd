@@ -10,9 +10,9 @@ func _ready():
 	anim_player = $AnimationPlayer	
 
 func _physics_process(delta):
-	enemy_movement(delta)	
+	enemy_movement()	
 
-func enemy_movement(delta):
+func enemy_movement():
 #	move_vec = Vector2()
 	if move_vec == Vector2.DOWN:
 		anim_player.play("walk_down")
@@ -26,9 +26,9 @@ func enemy_movement(delta):
 		anim_player.play("walk_side")
 #		
 	move_vec = move_vec.normalized()
-	
+
 	var coll = move_and_collide(move_vec * move_speed)	
-	
+
 	if coll:
 		if move_vec == Vector2.DOWN:
 			move_vec = Vector2.UP
@@ -38,7 +38,7 @@ func enemy_movement(delta):
 			move_vec = Vector2.RIGHT
 		elif move_vec == Vector2.RIGHT:
 			move_vec = Vector2.LEFT
-		
+
 	
 	
 	

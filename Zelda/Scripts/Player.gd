@@ -67,8 +67,6 @@ func player_collision():
 	
 			if level_tile_name == "shop_stairs_exit":
 				Globals.goto_scene("res://Scenes/Levels/Starting_World.tscn", "null")
-				print(Globals.enemy_dir)
-				print(Globals.enemy_pos)
 
 		if coll.collider.name == "Weapons_TileMap":
 			var weapons_tile_name = get_tile_name(coll, weapons_tilemap)[0]
@@ -76,7 +74,7 @@ func player_collision():
 	
 			if weapons_tile_name:
 				weapon_achievement_anim(weapons_tile_name, coll, cell)
-				
+
 func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		Globals.player_weapon = weapons_tile_name
 		clear_tile(coll, cell)
@@ -126,8 +124,5 @@ func weapon_attack(move_vec):
 				weap.rotation_degrees = 0
 				weap.velocity = Vector2.LEFT
 
-		
-	
-	
 
 

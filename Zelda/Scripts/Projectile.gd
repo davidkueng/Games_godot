@@ -13,10 +13,12 @@ func _physics_process(delta):
 
 func _on_Area2D_body_entered(body):
 	if "Enemy" in body.name:
-		Globals.enemy_pos.remove(Globals.enemy_pos.find(body.position))
-#		Globals.enemy_dir.remove(Globals.enemy_dir.find(body.move_vec))
-#		print(Globals.enemy_dir.find(body.move_vec))
-		body.queue_free()
 		
-		print(Globals.enemy_dir)
-		print(Globals.enemy_pos)
+		for i in Globals.enemy_pos.size():
+			if Globals.enemy_pos[i].x == body.position.x or Globals.enemy_pos[i].y == body.position.y:
+				Globals.enemy_pos.remove(i)
+				body.queue_free()
+				break
+	
+	
+#BUG: enemy sometimes changes Vector.x or y for some reason and cannot be freed therefore. loop does not work in these cases, because the if statement fails every time.

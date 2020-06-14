@@ -4,13 +4,13 @@ var player = null
 var current_scene = null
 var player_spawn_pos = Vector2(512, 300)
 var player_weapon = false
-var root
 var prev_scene
 var enemy_pos = [0,1,2]
 var enemy_dir = [0,1,2]
 
+
 func _ready():
-	root = get_tree().get_root()
+	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 func _process(delta):
@@ -25,8 +25,10 @@ func _deferred_goto_scene(path, spawn):
 	
 	prev_scene = spawn
 	current_scene.free()
+#	get_tree().get_root().remove_child(current_scene)
 	
 	current_scene = ResourceLoader.load(path).instance()
+
 	player = ResourceLoader.load("res://Scenes/Player.tscn").instance()
 	if prev_scene != "start_screen":
 		player_spawn_pos = current_scene.get_node("PlayerSpawn").position
@@ -38,10 +40,8 @@ func _deferred_goto_scene(path, spawn):
 	for i in enemy_pos.size():
 		spawn_enemies(i)
 		i += 1
-#		print("enemy_spawned")
 	
-	if current_scene.name == "Starting_World":
-		print_stray_nodes()
+	print_stray_nodes()
 #
 func spawn_enemies(pos):
 	var rand = RandomNumberGenerator.new()
@@ -52,17 +52,15 @@ func spawn_enemies(pos):
 		current_scene.add_child(enemy)
 
 		rand.randomize()
-		enemy.position.y = rand.randf_range(0, screen_size.y)
-		enemy.position.x = rand.randf_range(0, screen_size.x)
-		
+		enemy.position = Vector2(rand.randf_range(0, screen_size.x), rand.randf_range(0, screen_size.y))
+#	
 		var dir = [Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT]
 		enemy.move_vec = dir[rand.randi() % dir.size()]
 		
 		var distance_to_player = enemy.get_global_position().distance_to(player.get_global_position())
 
 		if distance_to_player < 150:
-			enemy.position.y = rand.randf_range(0, screen_size.y)  
-			enemy.position.x = rand.randf_range(0, screen_size.x)  
+			enemy.position = Vector2(rand.randf_range(0, screen_size.x), rand.randf_range(0, screen_size.y))
 		
 		enemy_pos.remove(pos)
 		enemy_dir.remove(pos)
@@ -74,8 +72,4 @@ func spawn_enemies(pos):
 		current_scene.add_child(enemy)
 		enemy.position = enemy_pos[pos]
 		enemy.move_vec = enemy_dir[pos]
-#
 
-#		BUG: always instance 3 new enemies even if some were killed before changing scene
-
-#		
