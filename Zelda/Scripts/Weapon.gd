@@ -2,6 +2,7 @@ extends Area2D
 
 var speed = 2.5
 var velocity = Vector2.ZERO
+#var velocity = Vector2(cos(self.rotation), sin(self.rotation))
 var life_time = 3
 
 func _ready():
@@ -21,4 +22,4 @@ func _on_Area2D_body_entered(body):
 				break
 	
 	
-#BUG: enemy sometimes changes Vector.x or y for some reason and cannot be freed therefore. loop does not work in these cases, because the if statement fails every time.
+#BUG: enemy sometimes changes Vector.x or y during physical_progress for some reason and cannot be freed with _body_entered therefore. loop does not work in these cases, because the if statement fails every time.

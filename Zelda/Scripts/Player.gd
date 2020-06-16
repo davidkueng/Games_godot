@@ -6,6 +6,9 @@ var weapons_tilemap
 var anim_player
 var move_speed = 2.5
 
+#signal shoot_arrow(arrow, direction, location)
+var weapon = preload("res://Scenes/Weapon.tscn")
+
 func _ready():
 	anim_player = $AnimationPlayer
 
@@ -89,7 +92,7 @@ func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		get_tree().paused = false
 
 		weapon_sprite.queue_free()
-	
+
 func get_tile_name(coll, tilemap):
 	var cell = tilemap.world_to_map(coll.position - coll.normal)
 	var tile_id = tilemap.get_cellv(cell)
@@ -102,27 +105,29 @@ func clear_tile(coll, tile_id):
 	
 func weapon_attack(move_vec):
 	if Globals.player_weapon:
-		var weap = load("res://Scenes/Weapon.tscn").instance()
-		add_child(weap)
-
+		var weapon = load("res://Scenes/Weapon.tscn").instance()
+		Globals.current_scene.add_child(weapon)
+		weapon.position = self.position
+		
 		if Globals.player_weapon == "axe":
-			var axe = preload("res://Assets/axe_small.png")
-			weap.get_node("weapon").set_texture(axe)
-			weap.speed = 0
+			var axe = load("res://Assets/axe_small.png")
+			weapon.get_node("weapon").set_texture(axe)
+			weapon.speed = 0
 
 		if Globals.player_weapon == "bow": 
+#			weapon.position = self.get_global_position()
 			if move_vec == Vector2.DOWN or move_vec == Vector2.ZERO:
-				weap.rotation_degrees = -90
-				weap.velocity = Vector2.DOWN
+				weapon.rotation_degrees = -90
+				weapon.velocity = Vector2.DOWN
 			elif move_vec == Vector2.UP:
-				weap.rotation_degrees = 90
-				weap.velocity = Vector2.UP
+				weapon.rotation_degrees = 90
+				weapon.velocity = Vector2.UP
 			elif move_vec == Vector2.RIGHT:
-				weap.rotation_degrees = 180
-				weap.velocity = Vector2.RIGHT
+				weapon.rotation_degrees = 180
+				weapon.velocity = Vector2.RIGHT
 			elif move_vec == Vector2.LEFT:
-				weap.rotation_degrees = 0
-				weap.velocity = Vector2.LEFT
+				weapon.rotation_degrees = 0
+				weapon.velocity = Vector2.LEFT
 
 
 

@@ -25,7 +25,6 @@ func _deferred_goto_scene(path, spawn):
 	
 	prev_scene = spawn
 	current_scene.free()
-#	get_tree().get_root().remove_child(current_scene)
 	
 	current_scene = ResourceLoader.load(path).instance()
 
