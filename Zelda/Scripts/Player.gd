@@ -17,9 +17,9 @@ func _ready():
 
 	if level_tilemap == null:
 			level_tilemap = $"/root/Main/Starting_World/Level_TileMap"
-
+	
 func _process(delta):
-	pass	
+	pass
 
 #	move_speed = Globals.move_speed
 
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	
 	player_movement()
 	
-	player_collision()
+	player_collision()	
 	
 func player_movement():
 	var move_vec = Vector2()
@@ -61,7 +61,7 @@ func player_movement():
 func player_collision():
 	var coll = move_and_collide(Vector2() * move_speed)
 
-	if coll:	
+	if coll:
 		if coll.collider.name == "Level_TileMap":
 			var level_tile_name = get_tile_name(coll, level_tilemap)[0]
 	
@@ -77,6 +77,14 @@ func player_collision():
 	
 			if weapons_tile_name:
 				weapon_achievement_anim(weapons_tile_name, coll, cell)
+				
+		if coll.collider.name == "camera_transition":
+			var tween = get_node("Camera_Transition")
+			self.get_parent().get_node("camera_transition/CollisionShape2D").disabled = true
+			
+			tween.interpolate_property($Camera2D, "limit_right",
+			1124, 3000, 5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			tween.start()			
 
 func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		Globals.player_weapon = weapons_tile_name
@@ -115,7 +123,6 @@ func weapon_attack(move_vec):
 			weapon.speed = 0
 
 		if Globals.player_weapon == "bow": 
-#			weapon.position = self.get_global_position()
 			if move_vec == Vector2.DOWN or move_vec == Vector2.ZERO:
 				weapon.rotation_degrees = -90
 				weapon.velocity = Vector2.DOWN

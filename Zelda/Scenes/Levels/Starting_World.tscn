@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/floor_tiles.png" type="Texture" id=1]
 
@@ -123,6 +123,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [sub_resource type="Animation" id=6]
 resource_name = "enemy_goober_walk"
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 59.9985 )
+
 [node name="Starting_World" type="Node2D"]
 
 [node name="Level_TileMap" type="TileMap" parent="."]
@@ -142,3 +145,12 @@ position = Vector2( 214.438, 111.485 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Entities_TileMap")
 anims/enemy_goober_walk = SubResource( 6 )
+
+[node name="camera_transition" type="KinematicBody2D" parent="."]
+position = Vector2( 1088.27, 511.938 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera_transition"]
+shape = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}

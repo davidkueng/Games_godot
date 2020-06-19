@@ -154,6 +154,12 @@ anims/walking_side = SubResource( 8 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+limit_left = -30
+limit_top = -30
+limit_right = 1124
+limit_bottom = 642
+
+[node name="Camera_Transition" type="Tween" parent="."]
 
 [node name="Position2D" type="Position2D" parent="."]
 visible = false
