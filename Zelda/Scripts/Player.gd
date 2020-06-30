@@ -6,7 +6,6 @@ var weapons_tilemap
 var anim_player
 var move_speed = 2.5
 
-#signal shoot_arrow(arrow, direction, location)
 var weapon = preload("res://Scenes/Weapon.tscn")
 
 func _ready():
@@ -27,7 +26,7 @@ func _physics_process(delta):
 	
 	player_movement()
 	
-	player_collision()	
+	player_collision()
 	
 func player_movement():
 	var move_vec = Vector2()
@@ -83,8 +82,10 @@ func player_collision():
 			self.get_parent().get_node("camera_transition/CollisionShape2D").disabled = true
 			
 			tween.interpolate_property($Camera2D, "limit_right",
-			1124, 3000, 5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-			tween.start()			
+			1124, 2248, 5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			tween.start()
+			
+#			BUG: only triggers once. Maybe leave it this way bc it could be intentional this way, triggering the camera transition is a bit tidious
 
 func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		Globals.player_weapon = weapons_tile_name

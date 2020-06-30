@@ -5,9 +5,8 @@ var current_scene = null
 var player_spawn_pos = Vector2(512, 300)
 var player_weapon = false
 var prev_scene
-var enemy_pos = [0,1,2]
-var enemy_dir = [0,1,2]
-
+var enemy_pos = [0,1,2,3,4,5]
+var enemy_dir = [0,1,2,3,4,5]
 
 func _ready():
 	var root = get_tree().get_root()
@@ -41,10 +40,13 @@ func _deferred_goto_scene(path, spawn):
 		i += 1
 	
 	print_stray_nodes()
-#
+	
 func spawn_enemies(pos):
 	var rand = RandomNumberGenerator.new()
 	var screen_size = get_viewport().get_visible_rect().size
+	var tilemap = current_scene.get_node("Level_TileMap")
+	
+	screen_size[0] = 2048
 
 	if current_scene.name == "Starting_World" and prev_scene == "start_screen":
 		var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
@@ -60,6 +62,12 @@ func spawn_enemies(pos):
 
 		if distance_to_player < 150:
 			enemy.position = Vector2(rand.randf_range(0, screen_size.x), rand.randf_range(0, screen_size.y))
+			
+		if !tilemap.tile_set.tile_get_name(tilemap.get_cellv(tilemap.world_to_map(enemy.position))).begins_with("floor_tiles"):
+			rand.randomize()
+			enemy.position = Vector2(rand.randf_range(0, screen_size.x), rand.randf_range(0, screen_size.y))
+			
+#			possible BUG: enemy could spawn inside of a wall again, maybe use a loop?
 		
 		enemy_pos.remove(pos)
 		enemy_dir.remove(pos)
@@ -71,4 +79,6 @@ func spawn_enemies(pos):
 		current_scene.add_child(enemy)
 		enemy.position = enemy_pos[pos]
 		enemy.move_vec = enemy_dir[pos]
+		
+		
 
