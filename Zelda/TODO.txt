@@ -1,10 +1,10 @@
-- weapon shop persistance
-- axe attack
-- stat system (int, str, agi), probably just one stat
+- weapon shop persistance ==done==
+- axe attack ==done==
+- simple inventory system
 - enemy attack
 - xp system, no lvl ups, you just get stronger or 1 stat point when lvl up.
-- (item) or gold drops, xp gain when enemy kill
-- simple inventory system
+- stat system (int, str, agi), probably just one stat
+- (item) or gold drops, xp gain when enemy kill -> enemy hp (weapons do different dmg)
 - main game loop
 	- enemies get stronger (and quicker?), the stronger player gets or/and as time passes (clock with game time?)
 	- (many) new enemies spawn (based on time passed?)

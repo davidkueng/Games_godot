@@ -35,6 +35,9 @@ func _deferred_goto_scene(path, spawn):
 	current_scene.add_child(player)
 	player.position = player_spawn_pos
 	
+	if player_weapon and current_scene.name == "Shop":
+		current_scene.get_node("Weapons_TileMap").tile_set.clear()
+	
 	for i in enemy_pos.size():
 		spawn_enemies(i)
 		i += 1

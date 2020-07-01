@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 2.5
+var speed = 3.5
 var velocity = Vector2.ZERO
 #var velocity = Vector2(cos(self.rotation), sin(self.rotation))
 var life_time = 3
