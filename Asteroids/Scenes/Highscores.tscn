@@ -1,0 +1,279 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/high_score.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Champagne & Limousines Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 50.0
+margin_right = -100.0
+margin_bottom = -50.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 843.0
+margin_right = 1004.0
+margin_bottom = 234.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = SubResource( 2 )
+
+[node name="title" type="Label" parent="VBoxContainer"]
+margin_right = 161.0
+margin_bottom = 84.0
+text = "HIGHSCORES
+
+"
+align = 1
+
+[node name="highscore_1" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 88.0
+margin_right = 161.0
+margin_bottom = 114.0
+
+[node name="place_1" type="Label" parent="VBoxContainer/highscore_1"]
+margin_right = 24.0
+margin_bottom = 26.0
+text = "1. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="VBoxContainer/highscore_1"]
+margin_left = 28.0
+margin_right = 100.0
+margin_bottom = 26.0
+hint_tooltip = "Enter your name!"
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "David"
+max_length = 8
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_score" type="Label" parent="VBoxContainer/highscore_1"]
+margin_left = 104.0
+margin_right = 160.0
+margin_bottom = 26.0
+text = "9000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 118.0
+margin_right = 161.0
+margin_bottom = 144.0
+
+[node name="place_2" type="Label" parent="VBoxContainer/highscore_2"]
+margin_right = 25.0
+margin_bottom = 26.0
+text = "2. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="VBoxContainer/highscore_2"]
+margin_left = 29.0
+margin_right = 101.0
+margin_bottom = 26.0
+hint_tooltip = "Enter your name!"
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "David"
+max_length = 8
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_score" type="Label" parent="VBoxContainer/highscore_2"]
+margin_left = 105.0
+margin_right = 161.0
+margin_bottom = 26.0
+text = "6000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 148.0
+margin_right = 161.0
+margin_bottom = 174.0
+
+[node name="place_3" type="Label" parent="VBoxContainer/highscore_3"]
+margin_right = 24.0
+margin_bottom = 26.0
+text = "3. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="VBoxContainer/highscore_3"]
+margin_left = 28.0
+margin_right = 100.0
+margin_bottom = 26.0
+hint_tooltip = "Enter your name!"
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "David"
+max_length = 8
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_score" type="Label" parent="VBoxContainer/highscore_3"]
+margin_left = 104.0
+margin_right = 159.0
+margin_bottom = 26.0
+text = "5000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 178.0
+margin_right = 161.0
+margin_bottom = 204.0
+
+[node name="place_4" type="Label" parent="VBoxContainer/highscore_4"]
+margin_right = 24.0
+margin_bottom = 26.0
+text = "4. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="VBoxContainer/highscore_4"]
+margin_left = 28.0
+margin_right = 100.0
+margin_bottom = 26.0
+hint_tooltip = "Enter your name!"
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "David"
+max_length = 8
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_score" type="Label" parent="VBoxContainer/highscore_4"]
+margin_left = 104.0
+margin_right = 159.0
+margin_bottom = 26.0
+text = "4000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_5" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 208.0
+margin_right = 161.0
+margin_bottom = 234.0
+
+[node name="place_5" type="Label" parent="VBoxContainer/highscore_5"]
+margin_right = 24.0
+margin_bottom = 26.0
+text = "5. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="VBoxContainer/highscore_5"]
+margin_left = 28.0
+margin_right = 100.0
+margin_bottom = 26.0
+hint_tooltip = "Enter your name!"
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+text = "David"
+max_length = 8
+editable = false
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_score" type="Label" parent="VBoxContainer/highscore_5"]
+margin_left = 104.0
+margin_right = 160.0
+margin_bottom = 26.0
+text = "2000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 850.0
+margin_top = 1068.0
+margin_right = 997.0
+margin_bottom = 1100.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+custom_fonts/font = SubResource( 6 )
+text = "Save and Exit"
+flat = true
+
+[node name="No_Highscore" type="Label" parent="."]
+visible = false
+margin_top = 421.0
+margin_right = 1848.0
+margin_bottom = 679.0
+custom_fonts/font = SubResource( 7 )
+text = "
+
+
+
+
+
+
+
+You did not reach a Highscore :("
+align = 1
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

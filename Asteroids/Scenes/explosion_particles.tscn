@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="explosion_particles" type="CPUParticles2D"]
+emitting = false
+amount = 120
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0

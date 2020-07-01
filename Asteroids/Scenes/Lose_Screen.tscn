@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/AtariBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Champagne & Limousines Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/retry.gd" type="Script" id=3]
+[ext_resource path="res://scripts/exit_lost_screen.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Lose_Screen.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Loose_info" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 632.0
+margin_top = 180.0
+margin_right = 1416.0
+margin_bottom = 620.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Loose_info"]
+margin_right = 784.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "You lose!"
+align = 1
+
+[node name="options" type="VBoxContainer" parent="Loose_info"]
+margin_left = 364.0
+margin_top = 30.0
+margin_right = 420.0
+margin_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="retry" type="Button" parent="Loose_info/options"]
+margin_right = 56.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "Retry"
+flat = true
+script = ExtResource( 3 )
+
+[node name="exit" type="Button" parent="Loose_info/options"]
+margin_top = 32.0
+margin_right = 56.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 3 )
+text = "Exit"
+flat = true
+script = ExtResource( 4 )
+[connection signal="pressed" from="Loose_info/options/retry" to="Loose_info/options/retry" method="_on_retry_pressed"]
+[connection signal="pressed" from="Loose_info/options/exit" to="Loose_info/options/exit" method="_on_exit_pressed"]

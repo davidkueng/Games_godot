@@ -1,0 +1,7 @@
+- highscore screen (?)
+- player shot behaviour
+- full-screen mode
+- player movement behaviour (slow down over time)
+- bigger viewport
+
+- check best practices before making a build

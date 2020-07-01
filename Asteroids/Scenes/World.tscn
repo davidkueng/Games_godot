@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/World.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Continue_Screen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/beat2.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/beat1.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Champagne & Limousines Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/Control_Info.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 7 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Control_Info" type="Label" parent="."]
+anchor_right = 0.065
+anchor_bottom = 0.323
+margin_left = 889.0
+margin_top = 274.702
+margin_right = 1157.65
+margin_bottom = 334.702
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Use < ^ > to move and Space to shoot.
+
+Every 2'000 points restore a life."
+align = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="effect" type="Tween" parent="Control_Info"]
+
+[node name="GUI" parent="." instance=ExtResource( 2 )]
+margin_left = -2.0
+margin_right = 46.0
+
+[node name="GUI_Container" parent="GUI" index="0"]
+margin_right = 76.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1024, 600 )
+
+[node name="Asteroid_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Ufo_Timer" type="Timer" parent="."]
+
+[node name="Difficulty_Timer" type="Timer" parent="."]
+
+[node name="Sound_Timer" type="Timer" parent="."]
+
+[node name="continue_screen" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="sound_one" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+
+[node name="sound_two" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+[connection signal="tween_completed" from="Control_Info/effect" to="Control_Info" method="_on_effect_tween_completed"]
+[connection signal="score" from="GUI" to="continue_screen" method="_on_GUI_score"]
+[connection signal="show_pause" from="GUI" to="continue_screen" method="_on_GUI_show_pause"]
+[connection signal="loose_hp" from="Player" to="GUI" method="_on_Player_loose_hp"]
+[connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
+[connection signal="timeout" from="Asteroid_Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Ufo_Timer" to="." method="_on_Ufo_Timer_timeout"]
+[connection signal="timeout" from="Difficulty_Timer" to="." method="_on_Difficulty_Timer_timeout"]
+[connection signal="timeout" from="Sound_Timer" to="." method="_on_Sound_Timer_timeout"]
+
+[editable path="GUI"]
+
+[editable path="Player"]
+
+[editable path="continue_screen"]

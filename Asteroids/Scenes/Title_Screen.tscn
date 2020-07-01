@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/New_Game_Button.gd" type="Script" id=1]
+[ext_resource path="res://Assets/AtariBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/Exit.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Title_Screen.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Champagne & Limousines Bold.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 5 )
+
+[node name="Title" type="Control"]
+anchor_left = 0.000699222
+anchor_right = 1.0007
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 864.0
+margin_top = 180.0
+margin_right = 887.173
+margin_bottom = 522.161
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 319.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 1 )
+text = "Asteroids"
+align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+margin_left = 107.0
+margin_top = 64.0
+margin_right = 212.0
+margin_bottom = 156.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="New_Game" type="Button" parent="Menu/Buttons"]
+margin_right = 105.0
+margin_bottom = 28.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 2 )
+text = "New Game"
+flat = true
+script = ExtResource( 1 )
+
+[node name="Options" type="Button" parent="Menu/Buttons"]
+margin_top = 32.0
+margin_right = 82.0
+margin_bottom = 60.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 3 )
+text = "Options"
+flat = true
+
+[node name="Exit" type="Button" parent="Menu/Buttons"]
+margin_top = 64.0
+margin_right = 42.0
+margin_bottom = 92.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 4 )
+text = "Exit"
+flat = true
+script = ExtResource( 3 )
+[connection signal="pressed" from="Menu/Buttons/New_Game" to="Menu/Buttons/New_Game" method="_on_New_Game_pressed"]
+[connection signal="pressed" from="Menu/Buttons/Exit" to="Menu/Buttons/Exit" method="_on_Exit_pressed"]

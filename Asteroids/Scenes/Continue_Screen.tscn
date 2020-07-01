@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/AtariBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Champagne & Limousines Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/continue_screen.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="continue_screen" type="Control"]
+pause_mode = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="point_info" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 632.0
+margin_top = 180.0
+margin_right = 1416.0
+margin_bottom = 620.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore_label" type="Label" parent="point_info"]
+margin_right = 784.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+
+[node name="options" type="VBoxContainer" parent="point_info"]
+margin_left = 267.0
+margin_top = 30.0
+margin_right = 517.0
+margin_bottom = 90.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Continue" type="Button" parent="point_info/options"]
+margin_right = 250.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 2 )
+text = "Continue"
+flat = true
+
+[node name="Exit" type="Button" parent="point_info/options"]
+margin_top = 32.0
+margin_right = 250.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 3 )
+text = "Register Highscore and Exit"
+flat = true
+[connection signal="pressed" from="point_info/options/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="point_info/options/Exit" to="." method="_on_Exit_pressed"]
