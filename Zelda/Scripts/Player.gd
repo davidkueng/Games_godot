@@ -120,7 +120,7 @@ func weapon_attack(move_vec):
 			Globals.current_scene.get_node("Player").add_child(weapon)
 			var axe = load("res://Assets/axe_small.png")
 			weapon.get_node("weapon").set_texture(axe)
-			weapon.speed = 0			
+			weapon.speed = 0
 			if move_vec == Vector2.DOWN:
 				weapon.position.y += 30
 			elif move_vec == Vector2.UP:

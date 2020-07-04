@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Inventory/background.png" type="Texture" id=1]
+[ext_resource path="res://Inventory.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/EquipmentSlots.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/GridBackPack.gd" type="Script" id=4]
+
+[node name="Inventory" type="Control"]
+anchor_left = 0.65
+anchor_top = 0.4
+anchor_right = 0.7
+anchor_bottom = 0.5
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryBase" type="Panel" parent="."]
+margin_left = -135.0
+margin_top = -141.0
+margin_right = 315.0
+margin_bottom = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipmentSlots" type="Panel" parent="."]
+self_modulate = Color( 0.262745, 0.262745, 0.262745, 1 )
+margin_left = 135.0
+margin_top = -120.0
+margin_right = 296.0
+margin_bottom = 69.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WEAPON" type="Panel" parent="EquipmentSlots"]
+margin_left = 11.4435
+margin_top = 43.9359
+margin_right = 61.4435
+margin_bottom = 155.936
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CHARACTER" type="Panel" parent="EquipmentSlots"]
+margin_left = 71.6694
+margin_top = 16.5649
+margin_right = 144.669
+margin_bottom = 173.565
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridBackPack" type="TextureRect" parent="."]
+self_modulate = Color( 0.443137, 0.443137, 0.443137, 1 )
+margin_left = -114.927
+margin_top = -124.919
+margin_right = 333.073
+margin_bottom = 131.081
+rect_scale = Vector2( 0.5, 0.75 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
