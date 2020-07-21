@@ -4,13 +4,15 @@ onready var slots = get_children()
 var items = {}
 
 func _ready():
-	#only use one slot (weapon). this loop is probably not necessary
+	#we only use one slot (weapon). this loop is probably not necessary
 	for slot in slots:
 		items[slot.name] = null
 
 func insert_item(item):
 	var item_pos = item.rect_global_position + item.rect_size / 2
-	var slot = get_slot_under_pos(item_pos)
+#	var slot = get_slot_under_pos(item_pos)
+	var slot = $WEAPON
+
 	if slot == null:
 		return false
 	

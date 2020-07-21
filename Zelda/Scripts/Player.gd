@@ -28,6 +28,12 @@ func _physics_process(delta):
 	
 	player_collision()
 	
+	if Input.is_action_just_pressed("Inventory"):
+		if !Globals.inventory.visible:
+			Globals.inventory.visible = true
+		else:
+			Globals.inventory.visible = false
+			
 func player_movement():
 	var move_vec = Vector2()
 #
@@ -76,6 +82,7 @@ func player_collision():
 	
 			if weapons_tile_name:
 				weapon_achievement_anim(weapons_tile_name, coll, cell)
+				Globals.inventory.pickup_item(weapons_tile_name)
 				
 		if coll.collider.name == "camera_transition":
 			var tween = get_node("Camera_Transition")
@@ -88,10 +95,13 @@ func player_collision():
 #			BUG: only triggers once. Maybe leave it this way bc it could be intentional this way, triggering the camera transition is a bit tidious
 
 func weapon_achievement_anim(weapons_tile_name, coll, cell):
-		Globals.player_weapon = weapons_tile_name
+		if !Globals.player_weapon:
+			Globals.player_weapon = weapons_tile_name
+		
 		clear_tile(coll, cell)
 #		weapons_tilemap.tile_set.clear()
-		var weapon_sprite = load("res://Scenes/weapons/" + Globals.player_weapon + ".tscn").instance()
+		
+		var weapon_sprite = load("res://Scenes/weapons/" + weapons_tile_name + ".tscn").instance()
 		add_child(weapon_sprite)
 		weapon_sprite.position.y -= 32
 		anim_player.play("get_wep")
@@ -115,9 +125,9 @@ func clear_tile(coll, tile_id):
 func weapon_attack(move_vec):
 	if Globals.player_weapon:
 		var weapon = load("res://Scenes/Weapon.tscn").instance()
+		Globals.current_scene.get_node("Player").add_child(weapon)
 		
 		if Globals.player_weapon == "axe":
-			Globals.current_scene.get_node("Player").add_child(weapon)
 			var axe = load("res://Assets/axe_small.png")
 			weapon.get_node("weapon").set_texture(axe)
 			weapon.speed = 0
@@ -133,7 +143,6 @@ func weapon_attack(move_vec):
 			weapon.get_node("AnimationPlayer").play("axe_swirl")
 
 		if Globals.player_weapon == "bow": 
-			Globals.current_scene.add_child(weapon)
 			if move_vec == Vector2.DOWN or move_vec == Vector2.ZERO:
 				weapon.rotation_degrees = -90
 				weapon.velocity = Vector2.DOWN

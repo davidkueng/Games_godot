@@ -3,23 +3,19 @@ extends Control
 const item_base = preload("res://Scenes/ItemBase.tscn")
 
 onready var inv_base = $InventoryBase
-onready var grid_bkpk = $GridBackPack
-onready var eq_slots = $EquipmentSlots
+onready var grid_bkpk = $InventoryBase/GridBackPack
+onready var eq_slots = $InventoryBase/EquipmentSlots
 
 var item_held = null
 var item_offset = Vector2()
 var last_container = null
 var last_pos = Vector2()
+var weap_slot_taken = false
 
 func _ready():
 	pass
-#	pickup_item("sword")
-#	pickup_item("potato")
-#	pickup_item("potato")
-#	pickup_item("sword")
-#	pickup_item("breastplate")
-#	pickup_item("breastplate")
-#	pickup_item("khfdd")
+#		pickup_item("bow")
+#		pickup_item("axe")
 	
 
 func _process(delta):
@@ -49,6 +45,8 @@ func release(cursor_pos):
 		drop_item()
 	elif c.has_method("insert_item"):
 		if c.insert_item(item_held):
+			if c == eq_slots:
+				Globals.player_weapon = item_held.get_meta("id")
 			item_held = null
 		else:
 			return_item()
@@ -76,7 +74,11 @@ func pickup_item(item_id):
 	item.set_meta("id", item_id)
 	item.texture = load(ItemDB.get_item(item_id)["icon"])
 	add_child(item)
-	if !grid_bkpk.insert_item_at_first_available_spot(item):
+	if !weap_slot_taken:
+		eq_slots.insert_item(item)
+		weap_slot_taken = true
+	elif !grid_bkpk.insert_item_at_first_available_spot(item):
 		item.queue_free()
 		return false
 	return true
+	
