@@ -1,16 +1,16 @@
 - weapon shop persistance ==done==
 - axe attack ==done==
-- simple inventory system
+- simple inventory system ==done==
 - enemy attack
 - xp system, no lvl ups, you just get stronger or 1 stat point when lvl up.
-- stat system (int, str, agi), probably just one stat
+- stat system (int, str, agi), probably just one stat -> char ui
 - (item) or gold drops, xp gain when enemy kill -> enemy hp (weapons do different dmg)
 - main game loop
 	- enemies get stronger (and quicker?), the stronger player gets or/and as time passes (clock with game time?)
 	- (many) new enemies spawn (based on time passed?)
 	- new weapons spawn after certain time has passed -> you can buy new, stronger weapons if you have killed enough enemies
 	- strong boss spawns after certain time has passed, boss has follow player AI
-	- after boss defeated -> score screen -> end of game loop
+	- after boss defeated -> score (what score?) screen -> end of game loop
 
 optional:
 - change starting world scene over time, maybe after a certain time has expired

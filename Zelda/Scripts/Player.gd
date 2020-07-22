@@ -82,7 +82,9 @@ func player_collision():
 	
 			if weapons_tile_name:
 				weapon_achievement_anim(weapons_tile_name, coll, cell)
+				Globals.inventory_items.push_front(weapons_tile_name)
 				Globals.inventory.pickup_item(weapons_tile_name)
+				
 				
 		if coll.collider.name == "camera_transition":
 			var tween = get_node("Camera_Transition")

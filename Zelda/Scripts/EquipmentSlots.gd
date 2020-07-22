@@ -23,6 +23,11 @@ func insert_item(item):
 		return false
 	items[item_slot] = item
 	item.rect_global_position = slot.rect_global_position + slot.rect_size / 2 - item.rect_size / 2
+	
+	var t = Globals.inventory_items.find(item.get_meta("id"))
+	Globals.inventory_items.remove(t)
+	Globals.inventory_items.push_front(item.get_meta("id"))
+	
 	return true
 
 func grab_item(pos):
