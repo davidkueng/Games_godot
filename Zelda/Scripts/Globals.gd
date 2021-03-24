@@ -7,8 +7,9 @@ var player_weapon = false
 var inventory
 var inventory_items = []
 var prev_scene
-var enemy_pos = [0,1,2,3,4,5]
-var enemy_dir = [0,1,2,3,4,5]
+var enemy_pos = range(0, 50)
+var enemy_dir = range(0, 50)
+var enemy_id = range(0, 50)
 
 func _ready():
 	var root = get_tree().get_root()
@@ -16,7 +17,7 @@ func _ready():
 	
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		get_tree().quit()	
 	
 func goto_scene(path, spawn):
 
@@ -38,7 +39,6 @@ func _deferred_goto_scene(path, spawn):
 	current_scene.add_child(player)
 	player.add_child(inventory)
 	inventory.rect_position = player.position
-
 	
 	player.position = player_spawn_pos
 	
@@ -81,14 +81,17 @@ func spawn_enemies(pos):
 		
 		enemy_pos.remove(pos)
 		enemy_dir.remove(pos)
+		enemy_id.remove(pos)
 		enemy_pos.push_front(Vector2(enemy.position.x, enemy.position.y))
 		enemy_dir.push_front(enemy.move_vec)
+		enemy_id.push_front(str(enemy))
 
 	elif current_scene.name == "Starting_World":
 		var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
 		current_scene.add_child(enemy)
 		enemy.position = enemy_pos[pos]
 		enemy.move_vec = enemy_dir[pos]
+		enemy_id[pos] = (str(enemy))
 		
 		
 

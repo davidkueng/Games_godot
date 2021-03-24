@@ -12,7 +12,9 @@ func _ready():
 	anim_player = $AnimationPlayer
 
 	level_tilemap = Globals.current_scene.get_node("Level_TileMap")
-	weapons_tilemap = Globals.current_scene.get_node("Weapons_TileMap")
+	
+	if Globals.current_scene.has_node("Weapons_TileMap"):
+		weapons_tilemap = Globals.current_scene.get_node("Weapons_TileMap")
 
 	if level_tilemap == null:
 			level_tilemap = $"/root/Main/Starting_World/Level_TileMap"
@@ -85,7 +87,6 @@ func player_collision():
 				Globals.inventory_items.push_front(weapons_tile_name)
 				Globals.inventory.pickup_item(weapons_tile_name)
 				
-				
 		if coll.collider.name == "camera_transition":
 			var tween = get_node("Camera_Transition")
 			self.get_parent().get_node("camera_transition/CollisionShape2D").disabled = true
@@ -94,7 +95,7 @@ func player_collision():
 			1124, 2248, 5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			tween.start()
 			
-#			BUG: only triggers once. Maybe leave it this way bc it could be intentional this way, triggering the camera transition is a bit tidious
+#			BUG: only triggers once. Maybe leave it this way bc it could be intentional this way (triggering the camera transition is a bit tedious)
 
 func weapon_achievement_anim(weapons_tile_name, coll, cell):
 		if !Globals.player_weapon:
@@ -145,6 +146,8 @@ func weapon_attack(move_vec):
 			weapon.get_node("AnimationPlayer").play("axe_swirl")
 
 		if Globals.player_weapon == "bow": 
+			var arrow = load("res://Assets/arrow.png")
+			weapon.get_node("weapon").set_texture(arrow)
 			if move_vec == Vector2.DOWN or move_vec == Vector2.ZERO:
 				weapon.rotation_degrees = -90
 				weapon.velocity = Vector2.DOWN

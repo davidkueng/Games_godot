@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/enemy_goober_anim_walk_2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/enemy_goober_anim_walk_1.png" type="Texture" id=2]
@@ -79,16 +79,12 @@ tracks/0/keys = {
 "values": [ ExtResource( 7 ), ExtResource( 6 ) ]
 }
 
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 9.39587
-height = 8.63467
-
 [node name="Enemy_goober" type="KinematicBody2D"]
 z_index = 1
 script = ExtResource( 3 )
 
 [node name="Body" type="Sprite" parent="."]
-texture = ExtResource( 7 )
+texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -98,9 +94,3 @@ anims/enemy_goober_walk = SubResource( 2 )
 anims/walk_down = SubResource( 3 )
 anims/walk_side = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 6 )

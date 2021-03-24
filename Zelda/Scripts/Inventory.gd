@@ -74,8 +74,6 @@ func pickup_item(item_id):
 	item.set_meta("id", item_id)
 	item.texture = load(ItemDB.get_item(item_id)["icon"])
 	add_child(item)
-#	Globals.inventory_items.push_front(item_id)
-	print(Globals.inventory_items)
 	if !weap_slot_taken:
 		eq_slots.insert_item(item)
 		weap_slot_taken = true
