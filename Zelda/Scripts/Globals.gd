@@ -2,7 +2,7 @@ extends Node
 
 var player = null
 var current_scene = null
-var player_spawn_pos = Vector2(512, 300)
+var player_spawn_pos = null
 var player_weapon = false
 var inventory
 var inventory_items = []
@@ -25,29 +25,32 @@ func goto_scene(path, spawn):
 
 func _deferred_goto_scene(path, spawn):
 	
-	prev_scene = spawn
 	current_scene.free()
+	prev_scene = spawn
 	
 	current_scene = ResourceLoader.load(path).instance()
-	player = ResourceLoader.load("res://Scenes/Player.tscn").instance()
-	inventory = ResourceLoader.load("res://Scenes/Inventory.tscn").instance()
-	
-	if prev_scene != "start_screen":
-		player_spawn_pos = current_scene.get_node("PlayerSpawn").position
-#
 	get_tree().get_root().add_child(current_scene)
-	current_scene.add_child(player)
-	player.add_child(inventory)
-	inventory.rect_position = player.position
-	
-	player.position = player_spawn_pos
+	if path != "res://Scenes/game_over_screen.tscn":
+		player = ResourceLoader.load("res://Scenes/Player.tscn").instance()
+		inventory = ResourceLoader.load("res://Scenes/Inventory.tscn").instance()
+		
+		current_scene.add_child(player)
+		player.add_child(inventory)
+		inventory.rect_position = player.position
+		
+		if prev_scene != "start_screen" and prev_scene != "game_over_screen" and path != "res://Scenes/game_over_screen.tscn":
+			player_spawn_pos = current_scene.get_node("PlayerSpawn").position	
+		else:
+			player_spawn_pos = Vector2(512, 300)
+		
+		player.position = player_spawn_pos
+		
+		for i in enemy_pos.size():
+			spawn_enemies(i)
+			i += 1
 	
 	if player_weapon and current_scene.name == "Shop":
-		current_scene.get_node("Weapons_TileMap").tile_set.clear()
-	
-	for i in enemy_pos.size():
-		spawn_enemies(i)
-		i += 1
+		current_scene.get_node("Weapons_TileMap").tile_set.clear()	
 	
 	print_stray_nodes()
 	
@@ -58,7 +61,7 @@ func spawn_enemies(pos):
 	
 	screen_size[0] = 2048
 
-	if current_scene.name == "Starting_World" and prev_scene == "start_screen":
+	if current_scene.name == "Starting_World" and prev_scene == "start_screen" or prev_scene == "game_over_screen":
 		var enemy = ResourceLoader.load("res://Scenes/Enemy_goober.tscn").instance() 
 		current_scene.add_child(enemy)
 
@@ -77,7 +80,7 @@ func spawn_enemies(pos):
 			rand.randomize()
 			enemy.position = Vector2(rand.randf_range(0, screen_size.x), rand.randf_range(0, screen_size.y))
 			
-#			possible BUG: enemy could spawn inside of a wall again, maybe use a loop?
+		#BUG: enemy could spawn inside of a wall again, maybe use a loop?
 		
 		enemy_pos.remove(pos)
 		enemy_dir.remove(pos)

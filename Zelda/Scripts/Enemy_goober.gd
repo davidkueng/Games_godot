@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-#onready var follow_path = get_parent()
-
 var move_speed = 1
 var anim_enemy
 var move_vec
@@ -13,7 +11,6 @@ func _physics_process(delta):
 	enemy_movement()	
 
 func enemy_movement():
-#	move_vec = Vector2()
 	if move_vec == Vector2.DOWN:
 		anim_enemy.play("walk_down")
 	if move_vec == Vector2.UP:

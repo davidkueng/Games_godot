@@ -10,8 +10,6 @@ func _ready():
 	
 func _physics_process(delta):
 	position += velocity * speed
-	
-#BUG: body.y or x (not sure if either or both) are not == body.pos for some reason and the enemy cannot be freed with _body_entered therefore. loop does not work in these cases, because the if statement fails every time.
 
 func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 	if "Enemy" in body.name:#
@@ -21,8 +19,3 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 				Globals.enemy_pos.remove(i)
 				body.queue_free()
 				break
-#			if int(Globals.enemy_pos[i].x) == int(body.position.x) or int(Globals.enemy_pos[i].y) == int(body.position.y):
-#				print("delete")
-#				Globals.enemy_pos.remove(i)
-#				body.queue_free()
-#				break	
