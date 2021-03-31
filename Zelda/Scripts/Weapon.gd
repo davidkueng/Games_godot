@@ -17,5 +17,13 @@ func _on_Area2D_body_shape_entered(body_id, body, body_shape, area_shape):
 			if str(body) == Globals.enemy_id[i]:
 				Globals.enemy_id.remove(i)
 				Globals.enemy_pos.remove(i)
+				Globals.enemy_tracker -= 1
+				Globals.GUI.get_node("number").text = str(Globals.enemy_tracker)
+				
+				if Globals.enemy_tracker == 0:
+					Globals.boss = ResourceLoader.load("res://Scenes/boss.tscn").instance()
+#					print(Globals.boss)
+					Globals.current_scene.add_child(Globals.boss)
+				
 				body.queue_free()
 				break

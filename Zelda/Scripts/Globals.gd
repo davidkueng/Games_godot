@@ -7,9 +7,12 @@ var player_weapon = false
 var inventory
 var inventory_items = []
 var prev_scene
-var enemy_pos = range(0, 50)
-var enemy_dir = range(0, 50)
-var enemy_id = range(0, 50)
+var GUI = null
+var enemy_pos = range(0, 1)
+var enemy_dir = range(0, 1)
+var enemy_id = range(0, 1)
+var enemy_tracker = null
+var boss = null
 
 func _ready():
 	var root = get_tree().get_root()
@@ -17,7 +20,7 @@ func _ready():
 	
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()	
+		get_tree().quit()
 	
 func goto_scene(path, spawn):
 
@@ -33,9 +36,12 @@ func _deferred_goto_scene(path, spawn):
 	if path != "res://Scenes/game_over_screen.tscn":
 		player = ResourceLoader.load("res://Scenes/Player.tscn").instance()
 		inventory = ResourceLoader.load("res://Scenes/Inventory.tscn").instance()
+		GUI = ResourceLoader.load("res://Scenes/GUI.tscn").instance()
 		
 		current_scene.add_child(player)
+		current_scene.add_child(GUI)
 		player.add_child(inventory)
+		
 		inventory.rect_position = player.position
 		
 		if prev_scene != "start_screen" and prev_scene != "game_over_screen" and path != "res://Scenes/game_over_screen.tscn":
@@ -48,6 +54,9 @@ func _deferred_goto_scene(path, spawn):
 		for i in enemy_pos.size():
 			spawn_enemies(i)
 			i += 1
+			
+		enemy_tracker = enemy_pos.size()
+		GUI.get_node("number").text = str(enemy_tracker)
 	
 	if player_weapon and current_scene.name == "Shop":
 		current_scene.get_node("Weapons_TileMap").tile_set.clear()	

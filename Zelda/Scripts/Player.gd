@@ -37,8 +37,7 @@ func _physics_process(delta):
 			Globals.inventory.visible = false
 			
 func player_movement():
-	var move_vec = Vector2()
-#
+	var move_vec = Vector2()#
 	if Input.is_action_pressed("move_down"):
 		move_vec += Vector2.DOWN
 		anim_player.play("walking_front")

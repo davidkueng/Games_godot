@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="enemy_counter" type="Label" parent="."]
+margin_left = 850.0
+margin_top = 10.0
+margin_right = 878.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+text = "Enemies left:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="number" type="Label" parent="."]
+margin_left = 950.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 24.0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -27,14 +27,15 @@ func enemy_movement():
 	var coll = move_and_collide(move_vec * move_speed)	
 
 	if coll:
-		if move_vec == Vector2.DOWN:
-			move_vec = Vector2.UP
-		elif move_vec == Vector2.UP:
-			move_vec = Vector2.DOWN
-		elif move_vec == Vector2.LEFT:
-			move_vec = Vector2.RIGHT
-		elif move_vec == Vector2.RIGHT:
-			move_vec = Vector2.LEFT
+		if "Enemy" in coll.collider.name or coll.collider.name == "Level_TileMap":
+			if move_vec == Vector2.DOWN:
+				move_vec = Vector2.UP
+			elif move_vec == Vector2.UP:
+				move_vec = Vector2.DOWN
+			elif move_vec == Vector2.LEFT:
+				move_vec = Vector2.RIGHT
+			elif move_vec == Vector2.RIGHT:
+				move_vec = Vector2.LEFT
 	
 #	======stupid movement solution==========
 	#	var prev_pos = follow_path.get_global_position()
